@@ -61,7 +61,7 @@
               p-0
             "
           >
-            <li><a href="#Abot" class="capitalize font-sans">test</a></li>
+            <li><a href="#Abot" class="capitalize font-sans"><RouterLink to="/movie">MovieView</RouterLink></a></li>
             <li><a href="#Quality" class="capitalize font-sans">Quality</a></li>
             <li><a href="#Skills" class="capitalize font-sans">Skills</a></li>
             <li><a href="#Contact" class="capitalize font-sans">contact</a></li>

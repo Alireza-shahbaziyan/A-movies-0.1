@@ -8,17 +8,8 @@
   <Navbar />
   <RouterView />
 </template>
-<script>
+<script setup>
 import { RouterLink, RouterView } from "vue-router";
 import Navbar from "./views/Navbar.vue";
-export default{
-  components:{
-    Navbar
-  },
-  methods: {
-    getData(){
 
-    }
-  },
-}
 </script>
