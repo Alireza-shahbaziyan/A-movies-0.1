@@ -9,6 +9,7 @@ export default createStore({
     coverImage: null,
     bannerImage: null,
     description: null,
+    status:null
   },
   getters: {
   },
@@ -20,6 +21,7 @@ export default createStore({
       state.description = value.data.plot;
       state.coverImage = value.data.cover_image;
       state.bannerImage = value.data.banner_image;
+      state.status = value.data.commit
     },
   },
   actions: {
