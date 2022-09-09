@@ -1,6 +1,6 @@
 # A-movies 0.1
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a website connected to Telegram bot to download movies for free
 
 ## Recommended IDE Setup
 
