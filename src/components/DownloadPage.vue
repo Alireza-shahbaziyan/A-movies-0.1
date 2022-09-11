@@ -1,21 +1,24 @@
 <template>
-  <HeaderDownloadPage />
-  <div class="body">
-    <AboutBox />
-  </div>
+  
+    <HeaderDownloadPage />
+    <div class="body min-h-screen">
+      <AboutBox />
+      <DownloadBox />
+    </div>
 </template>
 <script>
-  // import components
+// import components
 import HeaderDownloadPage from "./HeaderDownloadPage.vue";
 import AboutBox from "./AboutBox.vue";
+import DownloadBox from "./DownloadBox.vue";
 
 export default {
-  name: "MovieView", // package name
+  name: "DownloadPage", // package name
   // <<beforeCreate>> Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
-  beforeCreate() { 
+  beforeCreate() {
     this.$store.dispatch("fetchData");
   },
-  components: { HeaderDownloadPage, AboutBox },
+  components: { HeaderDownloadPage, AboutBox, DownloadBox },
 };
 </script>
 <style>

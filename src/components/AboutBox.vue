@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="font-serif text-slate-100 p-4 text-lg">
-      {{ $store.state.description }}....
+      {{ $store.state.data.plot }}....
     </div>
     <div
       class="
@@ -33,7 +33,7 @@
         <!-- circle -->
         <i class="bi bi-info-circle text-xl"></i>
       </div>
-      {{ $store.state.status }}
+      {{$store.state.data.commit}}
     </div>
   </div>
 </template>

@@ -3,31 +3,36 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    data: null,
-    id: null,
-    title: null,
-    coverImage: null,
-    bannerImage: null,
-    description: null,
-    status:null
+    data:Object,
+    status:Boolean
   },
   getters: {
+    sortData(state){
+     var newData =  state.data.files.slice(0);
+      newData.sort((a, b) => {
+        if (a.number === b.number && a.seasion === b.seasion) {
+            var x = a.quality;
+            var y = b.quality;
+            return x < y ? -1 : x > y ? 1 : 0;
+        }
+        if (a.seasion === b.seasion) {
+            return a.number - b.number;
+        }
+        return a.seasion - b.seasion;
+    });
+    return newData
+    }
   },
   mutations: {
     setData(state, value) {
-      state.data = value.data;
-      state.id = value.data.movie_id;
-      state.title = value.data.title;
-      state.description = value.data.plot;
-      state.coverImage = value.data.cover_image;
-      state.bannerImage = value.data.banner_image;
-      state.status = value.data.commit
+      state.data = value.result
+      state.status =value.status
     },
   },
   actions: {
     fetchData({ commit }) {
-      axios.get('https://ackerman.ir/api/test.php/').then((result) => {
-        commit('setData', result)
+      axios.get('https://anilist.runflare.run/get_movie?imdb_id=11198330').then((result) => {
+        commit('setData', result.data)
       }).catch((err) => {
         throw new Error(`API ${err}`);
       });
