@@ -14,16 +14,14 @@
         </a>
       </div>
     </div>
-    <div class="font-serif text-slate-100 p-4 text-lg">
-      {{ $store.state.data.plot }}....
-    </div>
+    <div class="font-serif text-slate-100 p-4 text-lg">{{ plot }}....</div>
     <div
       class="
         flex
         font-bold
         justify-start
         items-center
-        border border-t
+        border-b
         text-yellow-200
         border-black
         w-full
@@ -33,12 +31,18 @@
         <!-- circle -->
         <i class="bi bi-info-circle text-xl"></i>
       </div>
-      {{$store.state.data.commit}}
+      {{ commit }}
     </div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "aboutBox",
+  computed: mapState({
+    plot: (state) => state.data.plot,
+    commit: (state) => state.data.commit,
+  }),
 };
 </script>

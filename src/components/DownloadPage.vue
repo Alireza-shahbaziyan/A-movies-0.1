@@ -1,24 +1,30 @@
 <template>
-  
-    <HeaderDownloadPage />
-    <div class="body min-h-screen">
-      <AboutBox />
-      <DownloadBox />
+  <div class="w-full lg:flex lg:flex-col lg:items-center ">
+    <div class="lg:w-1/2">
+      <HeaderDownloadPage />
+      <div class="body min-h-screen">
+        <AboutBox />
+        <ShowSeasons />
+        <ShowEpisode />
+      </div>
     </div>
+  </div>
 </template>
 <script>
-// import components
 import HeaderDownloadPage from "./HeaderDownloadPage.vue";
 import AboutBox from "./AboutBox.vue";
-import DownloadBox from "./DownloadBox.vue";
+import ShowSeasons from "./ShowSeasons.vue";
+import ShowEpisode from "./ShowEpisode.vue";
 
 export default {
-  name: "DownloadPage", // package name
-  // <<beforeCreate>> Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  name: "DownloadPage",
+
+  // <<beforeCreate>> Called synchronously immediately after the instance has been initialized,
+  // before data observation and event/watcher setup.
   beforeCreate() {
-    this.$store.dispatch("fetchData");
+    this.$store.dispatch("fetchData"); //call store => index.js => action => fetchData
   },
-  components: { HeaderDownloadPage, AboutBox, DownloadBox },
+  components: { HeaderDownloadPage, AboutBox, ShowSeasons, ShowEpisode },
 };
 </script>
 <style>

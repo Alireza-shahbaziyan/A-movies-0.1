@@ -1,41 +1,40 @@
-import axios from 'axios'
+// import axios from 'axios'
 import { createStore } from 'vuex'
+import ManageServices from '../Services/ManageServices'
 
 export default createStore({
   state: {
-    data:Object,
-    status:Boolean
+    data: [],
+    status: Boolean,
+    seasion: 1,
+    Episodes: []
+
   },
   getters: {
-    sortData(state){
-     var newData =  state.data.files.slice(0);
-      newData.sort((a, b) => {
-        if (a.number === b.number && a.seasion === b.seasion) {
-            var x = a.quality;
-            var y = b.quality;
-            return x < y ? -1 : x > y ? 1 : 0;
-        }
-        if (a.seasion === b.seasion) {
-            return a.number - b.number;
-        }
-        return a.seasion - b.seasion;
-    });
-    return newData
+    filterEpisode(state) {
+      return state.Episodes.map(events => events.sort((a, b) => {
+        return a.number - b.number;
+      }))
     }
   },
   mutations: {
     setData(state, value) {
       state.data = value.result
-      state.status =value.status
+      state.status = value.status
+      state.Episodes.push(value.result.files)
+    },
+    setSeason(state, seasionNumber) {
+      state.seasion = seasionNumber
     },
   },
   actions: {
-    fetchData({ commit }) {
-      axios.get('https://anilist.runflare.run/get_movie?imdb_id=11198330').then((result) => {
-        commit('setData', result.data)
-      }).catch((err) => {
-        throw new Error(`API ${err}`);
-      });
+    async fetchData({ commit }) {
+      await ManageServices.getDetailsMovie()
+        .then((result) => {
+          commit('setData', result.data)
+        }).catch((err) => {
+          throw new Error(`API ${err}`);
+        });
 
     }
   },
